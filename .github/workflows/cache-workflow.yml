@@ -3,7 +3,7 @@ name: Cache Dependencies Workflow
 on:
   push:
     branches:
-      - main  # or your default branch
+      - main
 
 jobs:
   build:
@@ -21,4 +21,5 @@ jobs:
           key: cache-d3ae8db
 
       - name: Show cache result
-        run: echo "Cache hit: ${{ steps.prime-cache-d3ae8db.outputs.cache-hit }}"
+        run: |
+          echo "Cache hit: ${{ steps.prime-cache-d3ae8db.outputs.cache-hit }}"
