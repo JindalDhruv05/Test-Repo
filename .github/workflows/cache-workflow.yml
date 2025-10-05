@@ -13,8 +13,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Prime cache step
-        id: prime-cache-d3ae8db
+      - name: prime-cache-d3ae8db
+        id: cache_step
         uses: actions/cache@v4
         with:
           path: ~/.cache/my-dependencies
@@ -22,4 +22,8 @@ jobs:
 
       - name: Show cache result
         run: |
-          echo "Cache hit: ${{ steps.prime-cache-d3ae8db.outputs.cache-hit }}"
+          if [ "${{ steps.cache_step.outputs.cache-hit }}" == "true" ]; then
+            echo "Cache hit"
+          else
+            echo "Cache miss"
+          fi
