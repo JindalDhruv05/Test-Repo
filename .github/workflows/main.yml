@@ -1,0 +1,32 @@
+name: Cache Dependencies Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: prime-cache-d3ae8db
+        id: cache_step
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/my-dependencies
+          key: cache-d3ae8db
+
+      - name: 23f2001734@ds.study.iitm.ac.in
+        run: echo "Hello, world!"
+
+      - name: Show cache result
+        run: |
+          if [ "${{ steps.cache_step.outputs.cache-hit }}" == "true" ]; then
+            echo "Cache hit"
+          else
+            echo "Cache miss"
+          fi
